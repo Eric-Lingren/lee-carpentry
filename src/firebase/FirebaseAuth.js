@@ -3,7 +3,6 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import config from '../config/config' 
 
-console.log(config.firebaseConfig)
 class Firebase {
     constructor() {
         app.initializeApp(config.firebaseConfig)

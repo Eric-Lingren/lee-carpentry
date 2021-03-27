@@ -1,24 +1,11 @@
-import {useState, useContext} from 'react'
+// import {useState, useContext} from 'react'
 import firebase, { FirebaseContext } from './firebase/FirebaseIndex'
+import { Route, Switch } from 'react-router-dom'
+import ProtectedRoute from './shared/ProtectedRoute'
+import Homepage from './homepage/Homepage'
+import AdminLogin from './admin/AdminLogin'
+import CreateNewProject from './admin/CreateNewProject'
 import './App.css'
-
-
-const App = () => {
-  return (
-
-    <FirebaseContext.Provider value={{ firebase }}>
-      <div>
-        APP
-      </div>
-    </FirebaseContext.Provider>
-  )
-}
-
-export default App
-
-
-
-// GET
 
 // function handleSnapshot(snapshot) {
 //   const projects = snapshot.docs.map(doc => {
@@ -31,11 +18,36 @@ export default App
 
 
 // function getMessages() {
-//   let msg =  firebase.db.collection('messages').orderBy('created', 'desc').onSnapshot(handleSnapshot)
+//   let msg = firebase.db.collection('messages').orderBy('created', 'desc').onSnapshot(handleSnapshot)
 //   console.log(msg)
 // }
 
 // getMessages()
+
+
+
+const App = () => {
+
+  return (
+    <FirebaseContext.Provider value={{ firebase }}>
+      <Switch>
+          <Route exact path='/' component={Homepage} />
+          <ProtectedRoute path='/admin/create-project' component={CreateNewProject} />
+          <Route path='/admin' component={AdminLogin} />
+        </Switch>
+    </FirebaseContext.Provider>
+  )
+}
+
+export default App
+
+
+
+// GET
+
+
+
+
 
 
 
