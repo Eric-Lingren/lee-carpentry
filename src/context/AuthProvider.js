@@ -23,7 +23,7 @@ const  AuthContextProvider = (props) => {
         .then(() => {
             sessionStorage.setItem('constructionIsLogged', true)
             setAuthMessage('')
-            history.push('/admin/create-project')
+            history.push('/admin/projects')
         })
         .catch(() => setAuthMessage('Incorrect Email or Password'))
     }

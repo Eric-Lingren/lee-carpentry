@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthProvider'
+import sanitizeData from '../shared/utils/SanitizeData'
 
 
 const AdminLogin = () => {
@@ -17,13 +18,13 @@ const AdminLogin = () => {
                             type='email'
                             value={email}
                             placeholder='Email'
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(sanitizeData(e.target.value))}
                         />
                         <input
                             type='password'
                             value={password}
                             placeholder='Password'
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={e => setPassword(sanitizeData(e.target.value))}
                         />
                         <button> Login </button>
                     </form>

@@ -4,9 +4,12 @@ import { Route, Switch } from 'react-router-dom'
 import ProtectedRoute from './shared/ProtectedRoute'
 import Homepage from './homepage/Homepage'
 import AdminLogin from './admin/AdminLogin'
-import CreateNewProject from './admin/CreateNewProject'
+import AdminProjectHome from './admin/projects/AdminProjectHome'
+import AdminProjectCreate from './admin/projects/AdminProjectCreate'
+import AdminProjectEdit from './admin/projects/AdminProjectEdit'
 import './App.css'
 
+// console.log(firebase)
 // function handleSnapshot(snapshot) {
 //   const projects = snapshot.docs.map(doc => {
 //     return { id: doc.id, ...doc.data() }
@@ -32,7 +35,9 @@ const App = () => {
     <FirebaseContext.Provider value={{ firebase }}>
       <Switch>
           <Route exact path='/' component={Homepage} />
-          <ProtectedRoute path='/admin/create-project' Component={CreateNewProject} />
+          <ProtectedRoute path='/admin/projects/create' Component={AdminProjectCreate} />
+          <ProtectedRoute path='/admin/projects/edit' Component={AdminProjectEdit} />
+          <ProtectedRoute path='/admin/projects' Component={AdminProjectHome} />
           <Route path='/admin' component={AdminLogin} />
         </Switch>
     </FirebaseContext.Provider>
