@@ -8,36 +8,40 @@ const  AuthContextProvider = (props) => {
     let history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [didError, setDidError] = useState(false)
-    const [currentUser, setCurrentUser] = useState({})
+    const [authMessage, setAuthMessage] = useState('')
 
+    const register = (e) => {
+        e.preventDefault()
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => setAuthMessage('Successfully created user.  Please login.'))
+        .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
+    }
 
     const login = (e) => {
         e.preventDefault()
-
         firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // let user = userCredential.user
-            setDidError(false)
+        .then(() => {
+            sessionStorage.setItem('constructionIsLogged', true)
+            setAuthMessage('')
             history.push('/admin/create-project')
         })
-        .catch(() => {
-            setDidError(true)
-        })
+        .catch(() => setAuthMessage('Incorrect Email or Password'))
     }
 
     const logout = () => {
         firebase.auth().signOut()
-        .then(() => history.push('/'))
+        .then(() => {
+            sessionStorage.removeItem('constructionIsLogged')
+            history.push('/')
+        })
         .catch(error => error)
     }
 
-    const checkAccessRights = async () => {
-        await firebase.auth().onAuthStateChanged(function(user) {
-            console.log(user)
-            if(user) setCurrentUser(user)
-        })
-    }
+    // const checkAccessRights = async () => {
+    //     await firebase.auth().onAuthStateChanged( user => {
+    //         if(user) console.log(user)
+    //     })
+    // }
 
 
     return (
@@ -46,10 +50,10 @@ const  AuthContextProvider = (props) => {
             setEmail,
             password,
             setPassword,
+            register,
             login,
-            didError,
-            logout,
-            checkAccessRights
+            authMessage,
+            logout
         }}>
             {props.children}
         </AuthContext.Provider>

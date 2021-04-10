@@ -1,30 +1,58 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthProvider'
 
 
 const AdminLogin = () => {
-    const { email, setEmail, password, setPassword, login, didError, logout } = useContext(AuthContext)
+    const { email, setEmail, password, setPassword, login, authMessage, logout, register } = useContext(AuthContext)
+    const [ isRegistering, setIsRegistering ] = useState(false)
 
     return(
         <div>
-            <h2> Login: </h2>
-            <form onSubmit={login}>
-                <input 
-                    type='email'
-                    value={email}
-                    placeholder='Email'
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <input
-                    type='password'
-                    value={password}
-                    placeholder='Password'
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <button> Login </button>
-            </form>
-            { didError && <h4>Incorrect Email or Password</h4>}
+            {
+                !isRegistering ?
+                <>
+                    <h2> Login: </h2>
+                    <form onSubmit={login}>
+                        <input 
+                            type='email'
+                            value={email}
+                            placeholder='Email'
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            type='password'
+                            value={password}
+                            placeholder='Password'
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <button> Login </button>
+                    </form>
+                </>
+                :
+                <>
+                    <h2> Create User: </h2>
+                    <form onSubmit={register}>
+                        <input 
+                            type='email'
+                            value={email}
+                            placeholder='Email'
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            type='password'
+                            value={password}
+                            placeholder='Password'
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <button> Register </button>
+                    </form>
+                </>
+            }
+            <button onClick={() => setIsRegistering(!isRegistering)}> 
+                { !isRegistering ? 'Switch to Register' : 'Switch to Login'}
+            </button>
             <button onClick={logout}> Logout </button>
+            { authMessage && <h4>{authMessage}</h4>}
         </div>
     )
 }

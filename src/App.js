@@ -32,7 +32,7 @@ const App = () => {
     <FirebaseContext.Provider value={{ firebase }}>
       <Switch>
           <Route exact path='/' component={Homepage} />
-          <ProtectedRoute path='/admin/create-project' component={CreateNewProject} />
+          <ProtectedRoute path='/admin/create-project' Component={CreateNewProject} />
           <Route path='/admin' component={AdminLogin} />
         </Switch>
     </FirebaseContext.Provider>
