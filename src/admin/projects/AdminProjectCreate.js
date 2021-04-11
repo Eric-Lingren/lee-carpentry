@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ProjectContext } from '../../context/ProjectProvider'
-import firebase, { FirebaseContext } from '../../firebase/FirebaseIndex'
 import sanitizeData from '../../shared/utils/SanitizeData'
 
 const AdminProjectCreate = () => {
@@ -31,13 +30,6 @@ const AdminProjectCreate = () => {
     return(
         <div>
             <h1> Admin Project Create </h1>
-
-            // Images
-            // title
-            // description
-            // categories
-            // location
-
             <form>
                 <input 
                     type = 'file'

@@ -7,6 +7,7 @@ import AdminLogin from './admin/AdminLogin'
 import AdminProjectHome from './admin/projects/AdminProjectHome'
 import AdminProjectCreate from './admin/projects/AdminProjectCreate'
 import AdminProjectEdit from './admin/projects/AdminProjectEdit'
+import ProjectsHome from './projects/ProjectsHome'
 import './App.css'
 
 // console.log(firebase)
@@ -39,6 +40,7 @@ const App = () => {
           <ProtectedRoute path='/admin/projects/edit' Component={AdminProjectEdit} />
           <ProtectedRoute path='/admin/projects' Component={AdminProjectHome} />
           <Route path='/admin' component={AdminLogin} />
+          <Route path='/projects' component={ProjectsHome} />
         </Switch>
     </FirebaseContext.Provider>
   )
