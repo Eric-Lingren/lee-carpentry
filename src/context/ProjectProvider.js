@@ -55,10 +55,8 @@ const  ProjectContextProvider = (props) => {
             }
             console.log(newProject)
             firebase.db.collection('projects').add(newProject)
-            // setSubmitted(true)
         } catch(err) {
             console.error('Error creating project')
-            // setError('There was a problem sending your message. Please try again.')
         }
     }
 
@@ -76,6 +74,16 @@ const  ProjectContextProvider = (props) => {
         return allProjects
     }
 
+    const getOneProject = async (projectId) => {
+        let selectedProject = {}
+        await firebase.db.collection('projects')
+        .doc(projectId)
+        .get()
+        .then(doc => selectedProject = doc.data() )
+        return selectedProject
+    }
+
+
 
 
     return (
@@ -92,7 +100,8 @@ const  ProjectContextProvider = (props) => {
             addCategory, 
             allCategories,
             handleCreateNewProject,
-            getAllProjects
+            getAllProjects,
+            getOneProject
         }}>
             {props.children}
         </ProjectContext.Provider>

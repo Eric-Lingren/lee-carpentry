@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ProjectContext } from '../context/ProjectProvider'
+import ProjectsFilterBar from './ProjectsFilterBar'
 import ProjectCard from './ProjectCard'
 
 
@@ -19,7 +20,8 @@ const ProjectsHome = () => {
 
     return (
         <div>
-            <h1> Projects Home</h1>
+            <h1> Projects </h1>
+            <ProjectsFilterBar />
             { allProjects.length > 0 && mappedProjectCards }
         </div>
     )
