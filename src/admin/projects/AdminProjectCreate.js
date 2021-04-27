@@ -1,11 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProjectContext } from '../../context/ProjectProvider'
 import sanitizeData from '../../shared/utils/SanitizeData'
 
 const AdminProjectCreate = () => {
     const { 
         handleCreateNewProject, 
-        setImageAsFile, 
+        addImage,
         projectTitle, 
         setProjectTitle, 
         projectDescription, 
@@ -15,8 +15,20 @@ const AdminProjectCreate = () => {
         categoryText,
         setCategoryText,
         addCategory, 
-        allCategories
+        allCategories,
+        uploadSuccess,
+        setUploadSuccess,
+        allImagesAsFiles
     } = useContext(ProjectContext)
+
+
+    useEffect(() => {
+        if(uploadSuccess !== null){
+            setTimeout(() => {
+                setUploadSuccess(null)
+            }, 5000)
+        }
+    }, [uploadSuccess, setUploadSuccess])
 
 
     const mappedCategories = allCategories.map( (category, i) => {
@@ -27,13 +39,21 @@ const AdminProjectCreate = () => {
         )
     })
 
+
+    const mappedImagePreviews = allImagesAsFiles.map( (image, i) => {
+        let file = URL.createObjectURL(image)
+        return <img key={i} alt='upload-preview' src={file} style={{width: '200px', height: 'auto', margin: '5px' }} />
+    })
+
+
     return(
         <div>
             <h1> Admin Project Create </h1>
+            {mappedImagePreviews}
             <form>
                 <input 
                     type = 'file'
-                    onChange = {(e) => setImageAsFile(e.target.files[0])}
+                    onChange = {(e) => addImage(e.target.files[0])}
                 />
                 <label>Title:</label>
                 <input
@@ -68,6 +88,8 @@ const AdminProjectCreate = () => {
                 <button onClick={addCategory}> Add Category </button>
                 <button onClick={handleCreateNewProject}> Create Project </button>
             </form>
+            {uploadSuccess && <h2>Project Successfully Uploaded</h2>}
+            {uploadSuccess === false && <h2>Project Failed To Upload</h2>}
 
         </div>
     )

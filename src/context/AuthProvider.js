@@ -8,7 +8,7 @@ const  AuthContextProvider = (props) => {
     let history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [authMessage, setAuthMessage] = useState('')
+    const [authMessage, setAuthMessage] = useState(null)
 
     const register = (e) => {
         e.preventDefault()
@@ -32,6 +32,7 @@ const  AuthContextProvider = (props) => {
         firebase.auth().signOut()
         .then(() => {
             sessionStorage.removeItem('constructionIsLogged')
+            setAuthMessage('')
             history.push('/')
         })
         .catch(error => error)
