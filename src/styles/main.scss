@@ -6,8 +6,10 @@
 @import "./base/base.scss";
 
 //Component Style Imports: The components folder holds styles for smaller page components (widgets)
+@import "./components/buttons.scss";
 
 //Layout Style Imports: The layout folder holds styles for the layout for things like the header, footer, navigation and flex/grid systems
 @import "./layout/navigation.scss";
 
 //Pages Style Imports: The pages folder holds any styles specific to individual pages
+@import "./pages/home.scss";

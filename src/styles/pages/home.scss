@@ -1,0 +1,29 @@
+.home-hero-section {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  img {
+    position: absolute;
+    right: 0;
+    transform: translateY(20%);
+    height: 75%;
+  }
+}
+
+.home-hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55vw;
+  margin-bottom: 150px;
+  h2 {
+    margin: 0;
+    font-size: clamp(24px, 2.8vw, 44px);
+    font-weight: normal;
+    color: $site-color-green;
+    text-align: center;
+  }
+}
