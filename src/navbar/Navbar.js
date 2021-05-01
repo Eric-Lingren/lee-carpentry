@@ -5,7 +5,7 @@ import Logo from '../assets/jade-elephant.png'
 
 const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false)
-    const { authMessage } = useContext(AuthContext)
+    const { authMessage, logout } = useContext(AuthContext)
 
     useEffect(() => {
         if(sessionStorage.getItem('constructionIsLogged') === 'true'){
@@ -29,6 +29,7 @@ const Navbar = () => {
                     <>  
                         <NavLink className="navlink" activeClassName="navlink-selected" to='/admin/projects/create'> Create Project </NavLink>
                         <NavLink className="navlink" activeClassName="navlink-selected" to='/admin/projects/edit'> Edit Project </NavLink>
+                        <NavLink className="navlink" to="/" onClick={logout}> Log out </NavLink>
                     </>
                 }
             </div>
