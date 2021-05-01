@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
+import Logo from '../assets/jade-elephant.png'
 
 const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false)
@@ -16,17 +17,22 @@ const Navbar = () => {
 
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-evenly'}} >
-            <Link to='/'> Home </Link>
-            <Link to='/projects'> Projects </Link>
-            <Link to='/contact'> Contact </Link>
-            {isAdmin && 
-                <>  
-                    <Link to='/admin/projects/create'> Create Project </Link>
-                    <Link to='/admin/projects/edit'> Edit Project </Link>
-                </>
-            }
-        </div>
+        <nav>
+            <NavLink className="logo-link" to='/'>
+                <img src={Logo} alt="Logo" />
+            </NavLink>
+            <div className="navlinks-container">
+                <NavLink className="navlink" activeClassName="navlink-selected" exact to='/'> Home </NavLink>
+                <NavLink className="navlink" activeClassName="navlink-selected" to='/projects'> Projects </NavLink>
+                <NavLink className="navlink" activeClassName="navlink-selected" to='/contact'> Contact </NavLink>
+                {isAdmin && 
+                    <>  
+                        <NavLink className="navlink" activeClassName="navlink-selected" to='/admin/projects/create'> Create Project </NavLink>
+                        <NavLink className="navlink" activeClassName="navlink-selected" to='/admin/projects/edit'> Edit Project </NavLink>
+                    </>
+                }
+            </div>
+        </nav>
     )
 }
 

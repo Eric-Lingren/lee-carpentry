@@ -1,1 +1,13 @@
+//Utilities Style Imports: The utilities folder holds Sass tools, such as variables and mixins.
+// @import './utilities/mixins.scss';
+@import "./utilities/variables.scss";
+
+//Base Style Imports: The base folder holds boilderplate code for the project
 @import "./base/base.scss";
+
+//Component Style Imports: The components folder holds styles for smaller page components (widgets)
+
+//Layout Style Imports: The layout folder holds styles for the layout for things like the header, footer, navigation and flex/grid systems
+@import "./layout/navigation.scss";
+
+//Pages Style Imports: The pages folder holds any styles specific to individual pages

@@ -1,0 +1,25 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100vw - 80px);
+  height: 80px;
+  margin: 0 20px 0 40px;
+  img {
+    height: 100%;
+  }
+}
+
+.logo-link {
+  height: 100%;
+}
+
+.navlink {
+  font-size: 18px;
+  margin: 0 20px;
+  text-decoration: none;
+  color: $site-color-green;
+  &-selected {
+    color: $site-color-orange;
+  }
+}
