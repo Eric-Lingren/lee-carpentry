@@ -1,8 +1,19 @@
+import { useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ProjectContext } from '../context/ProjectProvider'
 import Testimonials from '../testimonials/Testimonials'
 import HomeImage from '../assets/homepage-steps.png'
 
 const Homepage = () => {
+    const { getHomeCarouselProjects, homeCarouselProjects } = useContext(ProjectContext)
+
+
+    useEffect(() => {
+        getHomeCarouselProjects()
+    }, [])
+
+    console.log(homeCarouselProjects)
+
     return (
         <>
             <section className="home-hero-section">
