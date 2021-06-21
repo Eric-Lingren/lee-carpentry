@@ -1,0 +1,118 @@
+.home-hero-section {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  img {
+    position: absolute;
+    right: 0;
+    transform: translateY(20%);
+    height: 75%;
+  }
+}
+
+.home-hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55vw;
+  margin-bottom: 150px;
+  z-index: 1;
+  h2 {
+    margin: 0;
+    font-size: clamp(24px, 2.8vw, 44px);
+    font-weight: normal;
+    color: $site-color-green;
+    text-align: center;
+  }
+}
+
+
+.carousel-container-layout {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-text {
+  color: white;
+  font-size: 45px;
+}
+
+.testimonials-wrap {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonail-container{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.testimonial-arrow-left{
+  margin-right: 100px;
+  font-size: 50px;
+  color: #606C38;
+  cursor: pointer;
+}
+
+.testimonial-arrow-right{
+  margin-left: 100px;
+  font-size: 50px;
+  color: #606C38;
+  cursor: pointer;
+}
+
+
+
+
+// the below is for carousel buttons on testimonail
+
+// .carousel.carousel-slider {
+//   overflow: inherit;
+// }
+
+// .carousel .control-next.control-arrow, .carousel .control-next.control-arrow:hover{
+//   background-color: transparent;
+//   right: -146px;
+// }
+
+// .carousel .control-prev.control-arrow, .carousel .control-prev.control-arrow:hover {
+//   background-color: transparent;
+//   left: -146px;
+// }
+
+// .carousel .control-arrow, .carousel.carousel-slider .control-arrow{
+//   opacity: 1;
+// }
+
+// .carousel .control-next.control-arrow:before {
+//   content: '';
+//   border: solid #0135AD;
+//   border-width: 0 8px 8px 0;
+//   display: inline-block;
+//   padding: 14px;
+//   transform: rotate(-45deg);
+//   -webkit-transform: rotate(-45deg);
+// }
+
+// .carousel .control-prev.control-arrow:before {
+//   content: '';
+//   border: solid #0135AD;
+//   border-width: 0 8px 8px 0;
+//   display: inline-block;
+//   padding: 14px;
+//   transform: rotate(135deg);
+//   -webkit-transform: rotate(135deg);
+// }
