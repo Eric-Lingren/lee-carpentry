@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ProjectContext } from '../context/ProjectProvider'
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+import { Carousel } from 'react-responsive-carousel'
 
 
 
@@ -19,40 +21,61 @@ const ProjectDetails = () => {
         fetchData()
     }, [getOneProject, projectId])
 
-    const mappedCategories = project && project.categories.map(category => <p key={category}> {category} </p>)
+    const mappedCategories = project && project.categories.map(category => <p className='project-details-categories' key={category}> {category} </p>)
+
+    const mappedProjectImages = project && project.imageUrls.map( (imageUrl, i) => {
+        return (
+            <img 
+                key={i}
+                src={imageUrl} 
+                alt="project" 
+                style={{ width: "100%", height: "700px" }}
+            />
+        )
+    })
 
 
     return (
-        <div>
-            <h1> Project Details Page</h1>
+        <div className='project-details-outer-wrapper'>
             {
                 project !== null &&
-                <>
-                    <div>
-                        <h3> Listed Categories </h3>
+                <div className='project-details-wrapper'>
+                    <div className='project-details-left-wrapper'>
+                        <h3 className='project-details-sub-header'> Listed Categories </h3>
                         { project.categories.length > 0 && mappedCategories }
                     </div>
-                    <div>
+                    <div className='project-details-center-wrapper'>
                         {
                             project.imageUrls &&
-                            <img 
-                                src={project.imageUrls[0]} 
-                                alt='project-images'
-                            />
+                            // <img 
+                            //     src={project.imageUrls[0]} 
+                            //     alt='project-images'
+                            // />
+                            <Carousel 
+                                autoPlay 
+                                infiniteLoop 
+                                useKeyboardArrows
+                                showThumbs={false}
+                                showStatus={false}
+                            >
+                                {mappedProjectImages}
+                            </Carousel>
                         }
-                        <h2> {project.projectTitle} </h2>
-                        <h4> {project.projectLocation} </h4>
-                        <p> {project.projectDescription} </p>
-                        <Link to='/projects'> Return to Projects Page </Link>
+                        <div className='project-details-title-container'>
+                            <h2 className='project-details-title'> {project.projectTitle} </h2>
+                            <h4 className='project-details-location'> {project.projectLocation} </h4>
+                        </div>
+                        <p className='project-details-description'> {project.projectDescription} </p>
                     </div>
-                    <div>
-                        <h3> Other Info </h3>
-                        <p>
+                    <div className='project-details-right-wrapper'>
+                        <h3 className='project-details-sub-header'> Other Info </h3>
+                        <p className='project-details-other-info-text'>
                             If there's anything else you want to include that I haven't put on here already it could go here
                         </p>
                     </div>
-                </>
+                </div>
             }
+            <Link to='/projects' className='project-details-link'> Return to Projects Page </Link>
         </div>
     )
 }

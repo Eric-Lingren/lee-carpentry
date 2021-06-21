@@ -116,7 +116,7 @@ const InfoModal = ({ project }) => {
 
     return (
         <div>
-            <FontAwesomeIcon onClick={openModal} style={{fontSize: '24px'}} icon={faEdit} />
+            <FontAwesomeIcon onClick={openModal} className='project-edit-button' icon={faEdit} />
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

@@ -18,4 +18,8 @@
     color: $site-color-green;
     background-color: $site-background;
   }
+  &-green {
+    background-color: $site-color-green;
+    color: white;
+  }
 }
