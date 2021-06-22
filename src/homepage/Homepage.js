@@ -3,6 +3,7 @@ import Testimonials from '../testimonials/Testimonials'
 import HomeImage from '../assets/homepage-steps.png'
 import HomeProjectCarousel from './HomeProjectCarousel'
 
+
 const Homepage = () => {
 
     return (
