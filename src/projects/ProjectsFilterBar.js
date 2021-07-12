@@ -1,13 +1,42 @@
+import { useState } from 'react' 
 
-const ProjectsFilterBar = () => {
+const ProjectsFilterBar = ({ setFilteredProjects }) => {
+    const [activeIndex, setActiveIndex] = useState(0)
+
+
+    const handleClick = (i, name) => {
+        setActiveIndex(i)
+        // setSelctedFilter(name.toLowerCase())
+        setFilteredProjects(name.toLowerCase())
+    }
+
+    // console.log(selectedFilter)
+
+    const clickableOptions = [
+        { name: 'All' },
+        { name: 'Framing' },
+        { name: 'Carpentry' },
+        { name: 'Decks' },
+        { name: 'Landscaping' },
+    ]
+
+    const filters = clickableOptions.map( (clickable, i) => {
+        return (
+            <span 
+                key={ clickable.name }
+                name={ clickable.name }
+                className={activeIndex === i ? 'projects-filter-text selected' : 'projects-filter-text' }
+                index={ i }
+                onClick={() => handleClick(i, clickable.name ) }
+            > 
+                {clickable.name} 
+            </span>
+        )
+    })
 
     return (
-        <div style={{ display: 'flex', justifyContent : 'space-evenly', backgroundColor: 'yellow'}}>
-            <span> All </span>
-            <span> Framing </span>
-            <span> Carpentry </span>
-            <span> Decks </span>
-            <span> Landscaping </span>
+        <div className='projecs-filter-bar-wrapper'>
+            { filters }
         </div>
     )
 }

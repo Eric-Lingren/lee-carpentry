@@ -12,7 +12,6 @@ import ProjectDetails from './projects/ProjectDetails'
 import Navbar from './navbar/Navbar'
 import Contact from './contact/Contact'
 import Footer from './footer/Footer'
-import './App.css'
 
 
 const App = () => {

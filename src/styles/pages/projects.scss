@@ -1,0 +1,206 @@
+// These are for Project Home, Project Card, and Project Filter Bar
+
+.projects-header{
+  color: #606C38;
+  font-weight: 100;
+  text-align: center;
+  font-size: 50px;
+  margin: 18px;
+}
+
+.projecs-filter-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #DDA15E;
+}
+
+.projects-filter-text{
+  margin: 0 15px 0 15px;
+  padding-bottom: 3px;
+  color: #606C38;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.selected{
+  border-bottom: 1px solid #606C38;
+}
+
+.project-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.project-card-link-wrapper{
+  height: 355px;
+  width: 400px;
+  margin: 25px;
+  border: 1px solid #BC6C25;
+}
+
+.project-links {
+  text-decoration: none;
+}
+
+.project-thumbnail-image {
+  width: 100%;
+  height: 225px;
+}
+
+.project-card-title{
+  font-size: 24px;
+  color: #606C38;
+  margin: 0;
+  font-weight: 100;
+  text-align: center;
+}
+.project-card-description{
+  font-size: 16px;
+  color: #BC6C25;
+  padding: 5px;
+  margin: 0;
+}
+
+.truncated {
+  display: block;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-card-categories-wrapper{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.project-card-tags{
+  font-size: 18px;
+  color: #606C38;
+  margin: 0;
+  margin-right: .3em;
+}
+.project-card-location{
+  font-size: 12px;
+  color: #606C38;
+  font-style: italic;
+  margin: 0;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.project-card-edit-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+// These are for Project Detials Page
+
+.project-details-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-details-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
+
+.project-details-left-wrapper{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 30px;
+}
+
+.project-details-center-wrapper{
+  width: 60%;
+}
+
+.project-details-right-wrapper{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 30px;
+}
+
+.project-details-sub-header {
+  color: #606C38;
+  font-size: 28px;
+  font-weight: 100;
+}
+
+.project-details-categories {
+  font-size: 18px;
+  color: #BC6C25;
+  margin: 15px 0 15px 0;
+}
+
+.project-details-other-info-text {
+  font-size: 18px;
+  color: #BC6C25;
+  margin: 15px;
+}
+
+.project-details-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.project-details-title {
+  font-size: 32px;
+  color: #606C38;
+  font-weight: 100;
+  margin: 0;
+}
+
+.project-details-location {
+  font-size: 24px;
+  color: #606C38;
+  font-weight: 100;
+  font-style: italic;
+  margin: 0;
+}
+
+.project-details-description {
+  font-size: 18px;
+  color: #BC6C25;
+}
+
+.project-details-link {
+  text-align: center;
+  color: #606C38;
+  margin-top: 25px;
+  font-size: 18px;
+}
+
+
+
+
+
+// These are for Edit Project
+
+.project-edit-button {
+  font-size: 30px; 
+  cursor: pointer; 
+  color: #606C38;
+  margin-top: -15px;
+}

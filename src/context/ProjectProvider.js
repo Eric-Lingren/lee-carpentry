@@ -12,6 +12,7 @@ const  ProjectContextProvider = (props) => {
     const [ allCategories, setAllCategories ] = useState([])
     const [ uploadSuccess, setUploadSuccess ] = useState(null)
     const [ projectUpdateSuccess, setProjectUpdateSuccess ] = useState(null)
+    const [ homeCarouselProjects, setHomeCarouselProject ] = useState([])
 
 
     const addCategory = (e) => {
@@ -32,19 +33,6 @@ const  ProjectContextProvider = (props) => {
         let imageUrls = await handleImageUploads()
         setAllImagesAsFiles([])
         submitProjectToFirebase(imageUrls)
-        // let firebaseImagePromises = []
-        // allImagesAsFiles.forEach(image => {
-        //     firebaseImagePromises.push(uploadImageAsPromise(image))
-        // })
-
-        // Promise.all(firebaseImagePromises)
-        // .then( urls => {
-        //     console.log(urls)
-        //     submitProjectToFirebase(urls)
-        // })
-        // .catch((error) => {
-        //     console.log(error)
-        // })
     }
 
     const handleImageUploads = async () => {
@@ -103,6 +91,20 @@ const  ProjectContextProvider = (props) => {
         return allProjects
     }
 
+    const getHomeCarouselProjects = async () => {
+        let allProjects = []
+
+        await firebase.db.collection('projects').orderBy('created', 'desc').limit(5)
+        .get()
+        .then(querySnapshot => {
+            const projects = querySnapshot.docs.map(doc => {
+                return { id: doc.id, ...doc.data() }
+            })
+            allProjects = projects
+        })
+        setHomeCarouselProject(allProjects)
+    }
+
 
     const getOneProject = async (projectId) => {
         let selectedProject = {}
@@ -129,7 +131,6 @@ const  ProjectContextProvider = (props) => {
             setProjectUpdateSuccess(false)
         }
     }
-
 
 
     const beginImageDeletion = async (stagedDeletions) => {
@@ -204,6 +205,8 @@ const  ProjectContextProvider = (props) => {
             allCategories,
             handleCreateNewProject,
             getAllProjects,
+            getHomeCarouselProjects,
+            homeCarouselProjects,
             getOneProject,
             uploadSuccess,
             setUploadSuccess,
