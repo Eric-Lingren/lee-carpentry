@@ -9,17 +9,26 @@
     right: 0;
     transform: translateY(20%);
     height: 75%;
+    filter: opacity(90%);
   }
 }
 
+.home-hero-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin-bottom: 150px;
+  z-index: 1;
+}
 .home-hero-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 55vw;
-  margin-bottom: 150px;
-  z-index: 1;
+  background-color: rgba(254, 250, 224, 0.7);
+  padding: 20px;
   h2 {
     margin: 0;
     font-size: clamp(24px, 2.8vw, 44px);
@@ -28,7 +37,6 @@
     text-align: center;
   }
 }
-
 
 .carousel-container-layout {
   display: flex;
@@ -43,76 +51,39 @@
   font-size: 45px;
 }
 
-.testimonials-wrap {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+
+
+@media only screen and (max-width: 769px){
+  .home-hero-overlay {
+    width: 100%;
+  }
+  .home-hero-text {
+    h2 {
+      font-size: clamp(28px, 2.8vw, 44px);
+    }
+  }
 }
 
-.testimonail-container{
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+@media only screen and (max-width: 426px){
+  .home-hero-section {
+    height: calc(80vh - 80px);
+    img {
+      width: 200vw;
+      height: auto;
+      overflow: hidden;
+    }
+  }
+  .home-hero-overlay {
+    width: 100%;
+  }
+  .home-hero-text {
+    background-color: rgba(254, 250, 224, 0.8);
+    h2 {
+      font-size: clamp(20px, 2.8vw, 44px);
+    }
+  }
 }
 
 
-.testimonial-arrow-left{
-  margin-right: 100px;
-  font-size: 50px;
-  color: #606C38;
-  cursor: pointer;
-}
-
-.testimonial-arrow-right{
-  margin-left: 100px;
-  font-size: 50px;
-  color: #606C38;
-  cursor: pointer;
-}
-
-
-
-
-// the below is for carousel buttons on testimonail
-
-// .carousel.carousel-slider {
-//   overflow: inherit;
-// }
-
-// .carousel .control-next.control-arrow, .carousel .control-next.control-arrow:hover{
-//   background-color: transparent;
-//   right: -146px;
-// }
-
-// .carousel .control-prev.control-arrow, .carousel .control-prev.control-arrow:hover {
-//   background-color: transparent;
-//   left: -146px;
-// }
-
-// .carousel .control-arrow, .carousel.carousel-slider .control-arrow{
-//   opacity: 1;
-// }
-
-// .carousel .control-next.control-arrow:before {
-//   content: '';
-//   border: solid #0135AD;
-//   border-width: 0 8px 8px 0;
-//   display: inline-block;
-//   padding: 14px;
-//   transform: rotate(-45deg);
-//   -webkit-transform: rotate(-45deg);
-// }
-
-// .carousel .control-prev.control-arrow:before {
-//   content: '';
-//   border: solid #0135AD;
-//   border-width: 0 8px 8px 0;
-//   display: inline-block;
-//   padding: 14px;
-//   transform: rotate(135deg);
-//   -webkit-transform: rotate(135deg);
-// }
+// Map Styles are under the map.scss page
+// Testimonials Styles are under the testimonianls.scss page

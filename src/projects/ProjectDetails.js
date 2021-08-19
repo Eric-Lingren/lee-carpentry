@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ProjectContext } from '../context/ProjectProvider'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
+import { useCurrentWidth } from '../shared/CustomHooks/useCurrentWidth'
 
 
 
@@ -12,7 +13,8 @@ const ProjectDetails = () => {
     const location = useLocation().pathname
     const lastIndex = location.lastIndexOf('/')+1
     const projectId = location.slice(lastIndex, location.length)
-
+    const currentWindowWidth = useCurrentWidth()
+    console.log(currentWindowWidth)
     useEffect(()=> {
         async function fetchData() {
             const response = await getOneProject(projectId)
@@ -29,7 +31,8 @@ const ProjectDetails = () => {
                 key={i}
                 src={imageUrl} 
                 alt="project" 
-                style={{ width: "100%", height: "700px" }}
+                className='project-details-image'
+                // style={{ width: "100%", height: "700px" }}
             />
         )
     })
@@ -40,17 +43,18 @@ const ProjectDetails = () => {
             {
                 project !== null &&
                 <div className='project-details-wrapper'>
-                    <div className='project-details-left-wrapper'>
-                        <h3 className='project-details-sub-header'> Listed Categories </h3>
-                        { project.categories.length > 0 && mappedCategories }
-                    </div>
+                    {
+                        currentWindowWidth > 768 &&
+                        <div className='project-details-left-wrapper'>
+                            <h3 className='project-details-sub-header'> Categories </h3>
+                            <div className='project-details-categories-wrapper'>
+                                { project.categories.length > 0 && mappedCategories }
+                            </div>
+                        </div>
+                    }
                     <div className='project-details-center-wrapper'>
                         {
                             project.imageUrls &&
-                            // <img 
-                            //     src={project.imageUrls[0]} 
-                            //     alt='project-images'
-                            // />
                             <Carousel 
                                 autoPlay 
                                 infiniteLoop 
@@ -73,6 +77,15 @@ const ProjectDetails = () => {
                             If there's anything else you want to include that I haven't put on here already it could go here
                         </p>
                     </div>
+                    {
+                        currentWindowWidth <= 768 &&
+                        <div className='project-details-left-wrapper'>
+                            <h3 className='project-details-sub-header'> Categories </h3>
+                            <div className='project-details-categories-wrapper'>
+                                { project.categories.length > 0 && mappedCategories }
+                            </div>
+                        </div>
+                    }
                 </div>
             }
             <Link to='/projects' className='project-details-link'> Return to Projects Page </Link>

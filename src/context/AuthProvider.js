@@ -8,13 +8,19 @@ const  AuthContextProvider = (props) => {
     let history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [authMessage, setAuthMessage] = useState(null)
 
     const register = (e) => {
         e.preventDefault()
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => setAuthMessage('Successfully created user.  Please login.'))
-        .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
+        if(password !== confirmPassword) return setAuthMessage('Passwords do not match')
+        // Mesage to notify users they can not create an account:
+        setAuthMessage('You do not have permissions to perfrom this action. Please contact the site administrator')
+        
+        // Registrations are disabled when the code below is removed
+        // firebase.auth().createUserWithEmailAndPassword(email, password)
+        // .then(() => setAuthMessage('Successfully created user.  Please login.'))
+        // .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
     }
 
     const login = (e) => {
@@ -29,6 +35,7 @@ const  AuthContextProvider = (props) => {
     }
 
     const logout = () => {
+        setAuthMessage('none')
         firebase.auth().signOut()
         .then(() => {
             sessionStorage.removeItem('constructionIsLogged')
@@ -38,12 +45,6 @@ const  AuthContextProvider = (props) => {
         .catch(error => error)
     }
 
-    // const checkAccessRights = async () => {
-    //     await firebase.auth().onAuthStateChanged( user => {
-    //         if(user) console.log(user)
-    //     })
-    // }
-
 
     return (
         <AuthContext.Provider value={{
@@ -51,6 +52,8 @@ const  AuthContextProvider = (props) => {
             setEmail,
             password,
             setPassword,
+            confirmPassword,
+            setConfirmPassword,
             register,
             login,
             authMessage,
