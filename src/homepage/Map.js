@@ -2,7 +2,7 @@ import UtahOutline from '../assets/utah-outline.png'
 const Map = () => {
     return (
         <div className='map-wrapper'>
-                <img className='map-image' src={UtahOutline} />
+                <img className='map-image' src={UtahOutline} alt='utah-outline' />
                 <div className='map-text-container'>
                     <h2 className='map-text'> All Inclusive Carpentry Services </h2>
                     <h2 className='map-text'> Across the Wasatch Front </h2>
