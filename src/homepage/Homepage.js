@@ -21,7 +21,7 @@ const Homepage = () => {
                 <img src={HomeImage} alt="home-construction" />
             </section>
 
-            {/* <HomeProjectCarousel /> */}
+            <HomeProjectCarousel />
             <Map />
             <Testimonials />
         </>

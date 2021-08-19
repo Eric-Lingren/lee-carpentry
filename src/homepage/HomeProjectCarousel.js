@@ -23,18 +23,11 @@ const HomeProjectCarousel = () => {
         return(
             <div key={i} style={{ position: "relative" }}>
                 <img 
+                    className='carousel-image'
                     src={project.imageUrls[0]} 
                     alt="project" 
-                    style={{ width: "100%", height: "100%" }}
                 />
-                <div
-                    style={{
-                        position: "absolute",
-                        left: "25%",
-                        top: "30%",
-                        color: "white",
-                    }}
-                >
+                <div className='carousel-text-container' >
                     <p className='carousel-text' > From Form, Frame and Finish to </p>
                     <p className='carousel-text' > Timbers, Trex, and Treehouses. </p>
                     <NavLink to={`/projects/${project.id}`}>
@@ -48,10 +41,11 @@ const HomeProjectCarousel = () => {
 
     return (
         <>
-        {isLoading ? <div>loading</div> :
+        {isLoading ? <div> Loading Project Carousel... </div> :
             <div className='carousel-container-layout'>
                 <Carousel 
                     autoPlay 
+                    interval={5000}
                     infiniteLoop 
                     useKeyboardArrows
                     showThumbs={false}
