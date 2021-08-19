@@ -1,0 +1,12 @@
+.footer-wrapper {
+    width: 100%;
+    // width: calc(100vw - 80px);
+    display: flex;
+    justify-content: flex-end;
+    position: fixed; bottom: 0
+}
+
+.footer-quote-navlink {
+    text-decoration: none;
+    color: white;
+}

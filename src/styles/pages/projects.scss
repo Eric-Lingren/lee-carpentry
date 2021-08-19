@@ -15,6 +15,7 @@
   align-items: center;
   height: 50px;
   background-color: #DDA15E;
+  width: 100vw;
 }
 
 .projects-filter-text{
@@ -24,6 +25,8 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+
 
 .selected{
   border-bottom: 1px solid #606C38;
@@ -114,6 +117,9 @@
 .project-details-wrapper {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   width: 100%
 }
 
@@ -126,6 +132,8 @@
   align-content: center;
   padding: 30px;
 }
+
+
 
 .project-details-center-wrapper{
   width: 60%;
@@ -153,6 +161,15 @@
   margin: 15px 0 15px 0;
 }
 
+.project-details-categories-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .project-details-other-info-text {
   font-size: 18px;
   color: #BC6C25;
@@ -163,6 +180,11 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.project-details-image {
+  width: 50vw;
+  height: auto;
 }
 
 .project-details-title {
@@ -193,9 +215,6 @@
 }
 
 
-
-
-
 // These are for Edit Project
 
 .project-edit-button {
@@ -203,4 +222,180 @@
   cursor: pointer; 
   color: #606C38;
   margin-top: -15px;
+}
+
+.project-edit-modal {
+  &-wrapper{
+    background-color: $site-background;
+  }
+  &-close-btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &-close-btn-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: $site-color-orange;
+  }
+  &-section-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+  }
+  &-section-input {
+    font-size: 16px;
+    height: 20px;
+    width: 300px;
+    margin-left: 25px;
+  }
+  &-section-text-area {
+    font-size: 16px;
+    height: 200px;
+    width: 300px;
+    margin-left: 25px;
+  }
+  &-section-btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 60%;
+  }
+  &-section-header {
+    color: $site-color-green;
+  }
+  &-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  &-delete-wrapper {
+    display: flex;
+  }
+  &-delete-btn {
+    font-size: 24px;
+    margin: 20px;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+
+
+@media only screen and (max-width: 769px){
+  .project-details-wrapper {
+    // display: flex;
+    flex-direction: column;
+  }
+  .project-details-left-wrapper{
+    width: 80%;
+  }
+  .project-details-center-wrapper{
+    width: 80%;
+  }
+  .project-details-right-wrapper{
+    width: 80%;
+  }
+  .project-details-sub-header {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+  .project-details-categories-wrapper {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .project-edit-modal {
+    &-section-wrap {
+      width: 100%;
+    }
+    &-section-btn-wrap {
+      width: 100%;
+    }
+  }
+}
+
+
+// This is for The Create New Project Page
+
+.project-create {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  &-section-header {
+    color: $site-color-green;
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 25px;
+    width: 80%;
+    input {
+      width: 400px;
+      font-size: 18px;
+      padding: 5px;
+      margin: 10px;
+      border: none;
+    }
+    textarea {
+      width: 400px;
+      height: 200px;
+      font-size: 18px;
+      padding: 5px;
+      margin: 10px;
+      border: none;
+    }
+  }
+  &-image-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &-create-btn {
+    margin-top: 10px;
+    margin-bottom: 100px;
+  }
+  &-category-btn {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 426px){
+  .projects-header{
+    font-size: 36px;
+  }
+  .projects-filter-text{
+    margin: 0 10px 0 10px;
+    font-size: 16px;
+  }
+  .project-details-title-container {
+    flex-direction: column;
+  }
+  .project-edit-modal {
+    &-section-wrap {
+      flex-direction: column;
+    }
+    &-section-input {
+      margin-left: 0;
+    }
+    &-section-text-area {
+      margin-left: 0;
+    }
+    &-section-btn-wrap {
+      margin-top: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 376px){
+  .projects-filter-text{
+    margin: 0 10px 0 10px;
+    font-size: 14px;
+  }
 }

@@ -47,15 +47,13 @@ const AdminProjectCreate = () => {
 
 
     return(
-        <div>
-            <h1> Admin Project Create </h1>
-            {mappedImagePreviews}
-            <form>
-                <input 
-                    type = 'file'
-                    onChange = {(e) => addImage(e.target.files[0])}
-                />
-                <label>Title:</label>
+        <div className='project-create-wrapper'>
+            <h1 className='project-create-section-header'> 
+                Create New Project 
+            </h1>
+            <form
+                className='project-create-form'
+            >
                 <input
                     type = 'text'
                     placeholder = 'Title'
@@ -64,8 +62,6 @@ const AdminProjectCreate = () => {
                 />
                 <label>Description:</label>
                 <textarea
-                    rows={10} 
-                    cols={25}
                     placeholder = 'Description'
                     value = {projectDescription}
                     onChange = {e => setProjectDescription(sanitizeData(e.target.value))}
@@ -85,8 +81,26 @@ const AdminProjectCreate = () => {
                     onChange = {e => setCategoryText(sanitizeData(e.target.value))}
                 />
                 { allCategories.length > 0 && mappedCategories }
-                <button onClick={addCategory}> Add Category </button>
-                <button onClick={handleCreateNewProject}> Create Project </button>
+                <button 
+                    className='btn btn-orange project-create-category-btn'
+                    onClick={addCategory}
+                > 
+                    Add Category 
+                </button>
+                <label>Add Images:</label>
+                <input 
+                    type = 'file'
+                    onChange = {(e) => addImage(e.target.files[0])}
+                />
+                <div className='project-edit-modal-image-container'>
+                    {mappedImagePreviews}
+                </div>
+                <button 
+                    className='btn btn-brown project-create-create-btn'
+                    onClick={handleCreateNewProject}
+                > 
+                    Create Project 
+                </button>
             </form>
             {uploadSuccess && <h2>Project Successfully Uploaded</h2>}
             {uploadSuccess === false && <h2>Project Failed To Upload</h2>}

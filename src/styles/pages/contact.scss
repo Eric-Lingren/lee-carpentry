@@ -24,7 +24,7 @@
 
 .contact-quote {
   color: #606C38;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 100;
   margin: 0;
 }
@@ -67,4 +67,57 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+
+@media only screen and (max-width: 1025px){
+  .contact-quote {
+    font-size: 26px;
+  }
+  .contact-right-wrapper {
+    margin-left: 1vw;
+  }
+  .contact-form {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 769px){
+  .contact-wrapper {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .contact-left-wrapper {
+    width: 90vw;
+    margin-bottom: 80px;
+  }
+  .contact-right-wrapper {
+    width: 90vw;
+    margin-left: 0vw;
+  }
+  .contact-quote {
+    font-size: 32px;
+  }
+  .contact-form {
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 426px){
+  .contact-left-wrapper {
+    width: 90vw;
+    margin-bottom: 80px;
+  }
+  .contact-right-wrapper {
+    width: 90vw;
+    margin-left: 0vw;
+  }
+  .contact-quote {
+    font-size: 18px;
+  }
+  .contact-form {
+    width: 350px;
+  }
 }
