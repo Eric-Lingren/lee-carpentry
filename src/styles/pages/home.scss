@@ -44,8 +44,7 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  height: 90vh;
-  margin-bottom: 50px;
+  height: calc(100vh - 80px);
 }
 
 .carousel-image {
