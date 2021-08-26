@@ -6,8 +6,7 @@ import { AuthContext } from '../context/AuthProvider'
 import { useCurrentWidth } from '../shared/CustomHooks/useCurrentWidth'
 import { useOutsideClick } from '../shared/CustomHooks/useOutsideClick'
 import SidePanel from './SidePanel'
-import Logo from '../assets/jade-elephant.png'
-
+import Logo from '../assets/logo.png'
 const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false)
     const { authMessage, logout } = useContext(AuthContext)
@@ -27,7 +26,7 @@ const Navbar = () => {
     return (
         <nav>
             <NavLink className="logo-link" to='/'>
-                <img src={Logo} alt="Logo" />
+                <img src={Logo} alt="Logo" className='logo'/>
             </NavLink>
             { currentWindowWidth < 769 ? 
                 <>
