@@ -21,7 +21,6 @@ const Homepage = () => {
                 </div>
                 <img src={HomeImage} alt="home-construction" />
             </section>
-
             <HomeProjectCarousel />
             <Map />
             <Testimonials />

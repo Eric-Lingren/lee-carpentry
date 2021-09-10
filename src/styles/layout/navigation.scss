@@ -12,7 +12,7 @@ nav {
 }
 
 .logo {
-  // padding: 10px;
+  padding-top: 10px;
   height: 175px;
 }
 
@@ -70,9 +70,12 @@ nav {
 @media only screen and (max-width: 426px){
   nav {
     margin: 0;
-    width: 100vw;
+    width: calc(100vw - 30px);
   }
   .navlink {
     margin: 0 10px;
+  }
+  .logo {
+    height: 125px;
   }
 }

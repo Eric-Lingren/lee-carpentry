@@ -6,7 +6,8 @@ import { AuthContext } from '../context/AuthProvider'
 import { useCurrentWidth } from '../shared/CustomHooks/useCurrentWidth'
 import { useOutsideClick } from '../shared/CustomHooks/useOutsideClick'
 import SidePanel from './SidePanel'
-import Logo from '../assets/logo.png'
+import Logo from '../assets/site_logo.png'
+
 const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false)
     const { authMessage, logout } = useContext(AuthContext)
