@@ -10,7 +10,8 @@ const customStyles = {
     content : {
         marginRight: '0%',
         marginLeft: '0%',
-        border: '4px solid #156477'
+        border: '4px solid #156477',
+        backgroundColor: '#fefae0'
     },
     overlay: {
         position: 'fixed',
@@ -73,6 +74,13 @@ const InfoModal = ({ project }) => {
         setImagesToRemove([...imagesToRemove, removedImage])
     }
 
+    const confirmDelete = (id) => {
+        if(window.confirm(`Are you sure you would like permanently delete this project ${project.projectTitle}? It will be irrecoverable.`)) {
+            deleteProject(id)
+            window.alert(`${project.projectTitle} has been deleted. Please refresh the page.`)
+        }
+    }
+
 
     const handleSubmitEdits = () => {
         let updatedProject = {
@@ -92,7 +100,11 @@ const InfoModal = ({ project }) => {
             <div key={i}>
                 <p key={category}> 
                     {category} 
-                    <FontAwesomeIcon icon={faTimesCircle} onClick={e => removeCategory(category)}/> 
+                    <FontAwesomeIcon 
+                        style={{marginLeft: '10px', color: 'red'}}
+                        icon={faTimesCircle} 
+                        onClick={e => removeCategory(category)}
+                    /> 
                 </p>
             </div>
         )
@@ -115,7 +127,7 @@ const InfoModal = ({ project }) => {
 
 
     return (
-        <div>
+        <div className='project-edit-modal-wrapper'>
             <FontAwesomeIcon onClick={openModal} className='project-edit-button' icon={faEdit} />
             <Modal
                 isOpen={modalIsOpen}
@@ -125,61 +137,107 @@ const InfoModal = ({ project }) => {
                 contentLabel="Example Modal"
             >
                 
-                <div>
-                    <FontAwesomeIcon onClick={closeModal}  style={{fontSize: '24px'}} icon={faTimesCircle} />
-                </div>
-                <div>
+                <div className='project-edit-modal-close-btn-wrap'>
                     <FontAwesomeIcon 
-                        onClick={() => deleteProject(project.id)}  
-                        style={{fontSize: '24px', margin: '20px', color: 'red'}} 
-                        icon={faTrash} 
+                        onClick={closeModal}  
+                        className='project-edit-modal-close-btn-icon'
+                        icon={faTimesCircle}
                     />
                 </div>
+                
                 <div className='modal-header-container'>
-                    <h1 className='modal-header'> Editing Project: {project.projectTitle}  </h1>
+                    <h1 className='project-edit-modal-section-header'> Editing Project: {project.projectTitle}  </h1>
                 </div>
                 <div>
-                    <h3>Title:</h3>
-                    <input
-                        type='text'
-                        value={editTitle}
-                        onChange={e => setEditTitle(sanitizeData(e.target.value))}
-                    />
-
-                    <h3>Description:</h3>
-                    <textarea
-                        rows={10} 
-                        cols={25}
-                        value={editDescription}
-                        onChange = {e => setEditDescription(sanitizeData(e.target.value))}
-                    />
-
-                    <h3>Location:</h3>
-                    <input
-                        type='text'
-                        value={editLocation}
-                        onChange={e => setEditLocation(sanitizeData(e.target.value))}
-                    />
-
-                    <h3>Categories:</h3>
-                    <input
-                        type='text'
-                        value={newCategory}
-                        onChange={e => setNewCategory(sanitizeData(e.target.value))}
-                    />
-                    <button onClick={addNewCategory}> Add </button>
+                    <div className='project-edit-modal-section-wrap'>
+                        <h2 className='project-edit-modal-section-header'>
+                            Title:
+                        </h2>
+                        <input
+                            className='project-edit-modal-section-input'
+                            type='text'
+                            value={editTitle}
+                            onChange={e => setEditTitle(sanitizeData(e.target.value))}
+                        />
+                    </div>
+                    <div className='project-edit-modal-section-wrap'>
+                        <h2 className='project-edit-modal-section-header'>
+                            Description:
+                        </h2>
+                        <textarea
+                            className='project-edit-modal-section-text-area'
+                            value={editDescription}
+                            onChange = {e => setEditDescription(sanitizeData(e.target.value))}
+                        />
+                    </div>
+                    <div className='project-edit-modal-section-wrap'>
+                        <h2 className='project-edit-modal-section-header'>
+                            Location:
+                        </h2>
+                        <input
+                            className='project-edit-modal-section-input'
+                            type='text'
+                            value={editLocation}
+                            onChange={e => setEditLocation(sanitizeData(e.target.value))}
+                        />
+                    </div>
+                    <div className='project-edit-modal-section-wrap'>
+                        <h2 className='project-edit-modal-section-header'>
+                            New Category:
+                        </h2>
+                        <input
+                            className='project-edit-modal-section-input'
+                            type='text'
+                            value={newCategory}
+                            onChange={e => setNewCategory(sanitizeData(e.target.value))}
+                        />
+                    </div>
+                    <div className='project-edit-modal-section-btn-wrap'>
+                        <button 
+                            className='btn btn-orange'
+                            onClick={addNewCategory}
+                            > 
+                            Add New Category 
+                        </button>
+                    </div>
+                    
+                    <h2 className='project-edit-modal-section-header'>
+                        Remove Categories:
+                    </h2>
                     {mappedCategories}
+                    <h2 className='project-edit-modal-section-header'> 
+                        Add Images: 
+                    </h2>
 
-                    <h3>Images:</h3>
-                    <h4> Add New Images: </h4>
-                    { newImagesPreview }
                     <input 
                         type = 'file'
                         onChange = {(e) => addImage(e.target.files[0])}
-                    />
-                    <h4> Remove Existing Images: </h4>
-                    { mappedImagePreviews }
-                    <button onClick={handleSubmitEdits}>Save All Edits</button>
+                        />
+                    <div className='project-edit-modal-image-container'>
+                        { newImagesPreview }
+                    </div>
+                    <h2 className='project-edit-modal-section-header'> 
+                        Remove Existing Images: 
+                    </h2>
+                    <div className='project-edit-modal-image-container'>
+                        { mappedImagePreviews } 
+                    </div>
+                    <button 
+                        className='btn btn-brown'
+                        onClick={handleSubmitEdits}
+                    >
+                            Save All Edits
+                    </button>
+                    <div className='project-edit-modal-delete-wrapper'>
+                        <h2 className='project-edit-modal-section-header'>
+                            Delete Project:
+                        </h2>
+                        <FontAwesomeIcon 
+                            onClick={() => confirmDelete(project.id)} 
+                            className='project-edit-modal-delete-btn' 
+                            icon={faTrash} 
+                        />
+                    </div>
                     {projectUpdateSuccess && <h2>Project Successfully Updated</h2>}
                     {projectUpdateSuccess === false && <h2>Project Failed To Update</h2>}
                 </div>

@@ -2,12 +2,18 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
   width: calc(100vw - 80px);
   height: 80px;
   margin: 0 20px 0 40px;
   img {
     height: 100%;
   }
+}
+
+.logo {
+  padding-top: 10px;
+  height: 175px;
 }
 
 .logo-link {
@@ -21,5 +27,55 @@ nav {
   color: $site-color-green;
   &-selected {
     color: $site-color-orange;
+  }
+}
+
+.hamburger-bars{
+  font-size: 28px;
+  margin-right: 10px;
+  color: $site-color-orange;
+  cursor: pointer;
+}
+
+.sidepanel{
+    &-container {
+    background-color: $site-color-green;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    margin-top: 65px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  &-navlink {
+    font-size: 22px;
+    margin: 5px 20px;
+    text-decoration: none;
+    color: white;
+    &-selected {
+      color: $site-color-light-orange;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 426px){
+  nav {
+    margin: 0;
+    width: calc(100vw - 30px);
+  }
+  .navlink {
+    margin: 0 10px;
+  }
+  .logo {
+    height: 125px;
   }
 }

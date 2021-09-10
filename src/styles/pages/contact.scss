@@ -24,7 +24,7 @@
 
 .contact-quote {
   color: #606C38;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 100;
   margin: 0;
 }
@@ -67,4 +67,108 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+
+.loader-wrapper {
+  top: 0;
+  left: 0;
+  background-color: #606c38;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 4px solid #fefae0;
+  animation: loader 2s infinite ease;
+}
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fefae0;
+  animation: loader-inner 2s infinite ease-in;
+}
+@keyframes loader {
+  0% { transform: rotate(0deg);}
+  25% { transform: rotate(180deg);}
+  50% { transform: rotate(180deg);}
+  75% { transform: rotate(360deg);}
+  100% { transform: rotate(360deg);}
+}
+@keyframes loader-inner {
+  0% { height: 0%;}
+  25% { height: 0%;}
+  50% { height: 100%;}
+  75% { height: 100%;}
+  100% { height: 0%;}
+}
+
+
+.contact-message {
+  &-wrapper {
+    text-align: center;
+  }
+  &-success {
+    color: #606c38;
+  }
+  &-fail {
+    color: red;
+  }
+}
+
+@media only screen and (max-width: 1025px){
+  .contact-quote {
+    font-size: 26px;
+  }
+  .contact-right-wrapper {
+    margin-left: 1vw;
+  }
+  .contact-form {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 769px){
+  .contact-wrapper {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .contact-left-wrapper {
+    width: 90vw;
+    margin-bottom: 80px;
+    margin-top: 75px;
+  }
+  .contact-right-wrapper {
+    width: 90vw;
+    margin-left: 0vw;
+  }
+  .contact-quote {
+    font-size: 32px;
+  }
+  .contact-form {
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 426px){
+  .contact-left-wrapper {
+    width: 90vw;
+    margin-bottom: 80px;
+  }
+  .contact-right-wrapper {
+    width: 90vw;
+    margin-left: 0vw;
+  }
+  .contact-quote {
+    font-size: 16px;
+  }
+  .contact-form {
+    width: 300px;
+  }
 }

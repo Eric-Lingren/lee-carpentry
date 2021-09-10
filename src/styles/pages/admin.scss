@@ -1,0 +1,44 @@
+.admin-login {
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+    }
+    &-header {
+        color: $site-color-brown;
+    }
+    &-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        margin: 25px;
+        width: 290px;
+        input {
+            width: 100%;
+            font-size: 18px;
+            padding: 5px;
+            margin: 10px;
+            border: none;
+        }
+        // button {
+        //     width: 250px;
+        //     border: none;
+        // }
+    }
+}
+
+.admin-project-home {
+    &-header {
+        color: $site-color-brown;
+        text-align: center;
+    }
+    &-link {
+        text-decoration: none;
+        color: white;
+    }
+}
