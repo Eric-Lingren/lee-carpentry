@@ -11,7 +11,7 @@ const HomeProjectCarousel = () => {
 
     useEffect(() => {
         getHomeCarouselProjects()
-    }, [getHomeCarouselProjects])
+    }, [])
 
     useEffect(() => {
         homeCarouselProjects.length && setIsLoading(false)

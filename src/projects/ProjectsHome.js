@@ -39,7 +39,7 @@ const ProjectsHome = () => {
 
 
     return (
-        <div>
+        <div className='projects-home-wrap'>
             <h1 className='projects-header'> 
                 { canEdit ? 'Edit Projects' : 'Projects' }
             </h1>
