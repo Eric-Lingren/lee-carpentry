@@ -289,7 +289,6 @@
 
 @media only screen and (max-width: 769px){
   .project-details-wrapper {
-    // display: flex;
     flex-direction: column;
   }
   .project-details-left-wrapper{
@@ -371,12 +370,19 @@
 }
 
 @media only screen and (max-width: 426px){
+  .projects-home-wrap {
+    margin-top: 75px;
+  }
   .projects-header{
     font-size: 36px;
   }
+  .projecs-filter-bar-wrapper {
+    flex-direction: column;
+    height: 175px;
+  }
   .projects-filter-text{
-    margin: 0 10px 0 10px;
-    font-size: 16px;
+    margin: 3px;
+    font-size: 18px;
   }
   .project-details-title-container {
     flex-direction: column;
@@ -394,12 +400,5 @@
     &-section-btn-wrap {
       margin-top: 10px;
     }
-  }
-}
-
-@media only screen and (max-width: 376px){
-  .projects-filter-text{
-    margin: 0 10px 0 10px;
-    font-size: 14px;
   }
 }
