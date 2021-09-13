@@ -16,10 +16,13 @@ const Contact = () => {
         setIsSendingMessage(true)
         let msg = {name: name, email:email, message: message}
         send(
-            'service_sw1fdow',
-            'template_ua64w4r',
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            // 'service_sw1fdow',
+            // 'template_ua64w4r',
             msg,
-            'user_JDZ3MfFYGQmygHTv4Rgra'
+            // 'user_JDZ3MfFYGQmygHTv4Rgra'
+            process.env.REACT_APP_EMAILJS_USER_ID,
         )
         .then((response) => {
             setDidSubmissionError(false)
