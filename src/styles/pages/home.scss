@@ -99,7 +99,7 @@
 
 @media only screen and (max-width: 426px){
   .home-hero-section {
-    height: calc(80vh - 80px);
+    height: 100vh;
     img {
       width: 200vw;
       height: auto;
@@ -108,6 +108,7 @@
   }
   .home-hero-overlay {
     width: 100%;
+    margin-top: 100px;
   }
   .home-hero-text {
     background-color: rgba(254, 250, 224, 0.8);
@@ -116,7 +117,7 @@
     }
   }
   .carousel-container-layout {
-    height: 70vh;
+    height: 100vh;
     margin-bottom: 0;
   }
   .carousel-text-container {
