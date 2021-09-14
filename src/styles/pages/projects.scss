@@ -117,7 +117,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .project-details-wrapper {
@@ -290,6 +290,9 @@
 
 
 @media only screen and (max-width: 769px){
+  .project-details-outer-wrapper {
+    margin-top: 150px;
+  }
   .project-details-wrapper {
     flex-direction: column;
   }
