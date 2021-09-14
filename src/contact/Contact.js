@@ -11,6 +11,7 @@ const Contact = () => {
     const [didSubmissionError, setDidSubmissionError] = useState(false)
     const [submissionMessage, setSubmissionMessage] = useState(null)
 
+    console.log( process.env.REACT_APP_EMAILJS_SERVICE_ID)
     const submitContactForm = (e) => {
         e.preventDefault()
         setIsSendingMessage(true)
@@ -18,10 +19,7 @@ const Contact = () => {
         send(
             process.env.REACT_APP_EMAILJS_SERVICE_ID,
             process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-            // 'service_sw1fdow',
-            // 'template_ua64w4r',
             msg,
-            // 'user_JDZ3MfFYGQmygHTv4Rgra'
             process.env.REACT_APP_EMAILJS_USER_ID,
         )
         .then((response) => {
