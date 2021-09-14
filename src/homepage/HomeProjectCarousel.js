@@ -40,7 +40,7 @@ const HomeProjectCarousel = () => {
 
 
     return (
-        <div className='carousel-container-layout'>
+        <>
         {isLoading ? <div> Loading Project Carousel... </div> :
             <div className='carousel-container-layout'>
                 <Carousel 
@@ -55,7 +55,7 @@ const HomeProjectCarousel = () => {
                 </Carousel>
             </div>
         }  
-        </div>
+        </>
     )
 }
 

@@ -1,10 +1,13 @@
 .contact-wrapper {
   display: flex;
-  height: 80vh;
+  height: 100vh;
+  width: 100vw;
 }
 
 .contact-left-wrapper {
-  width: 55vw;
+  width: 50vw;
+  margin-left: 2vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +17,13 @@
 
 .contact-right-wrapper {
   width: 40vw;
+  margin-left: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: center;
-  margin-left: 5vw;
+  
 }
 
 .contact-quote {
@@ -37,7 +41,8 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 450px;
+
   input{
     background-color: #DDA15ECB;
     border: none;
@@ -120,24 +125,26 @@
   }
 }
 
-@media only screen and (max-width: 1025px){
+@media only screen and (max-width: 1150px){
   .contact-quote {
     font-size: 26px;
   }
-  .contact-right-wrapper {
-    margin-left: 1vw;
+}
+@media only screen and (max-width: 1025px){
+  .contact-quote {
+    font-size: 24px;
   }
   .contact-form {
     width: 400px;
   }
 }
 
-@media only screen and (max-width: 769px){
+@media only screen and (max-width: 900px){
   .contact-wrapper {
     flex-direction: column;
     align-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 100px;
   }
   .contact-left-wrapper {
     width: 90vw;
@@ -149,14 +156,23 @@
     margin-left: 0vw;
   }
   .contact-quote {
-    font-size: 32px;
+    font-size: 24px;
   }
   .contact-form {
     width: 500px;
   }
 }
 
+@media only screen and (max-width: 768px){
+  .contact-form {
+    margin-bottom: 300px;
+  }
+}
+
 @media only screen and (max-width: 426px){
+  .contact-wrapper {
+    margin-top: 50px;
+  }
   .contact-left-wrapper {
     width: 90vw;
     margin-bottom: 80px;
@@ -170,5 +186,6 @@
   }
   .contact-form {
     width: 300px;
+    margin-bottom: 100px;
   }
 }
