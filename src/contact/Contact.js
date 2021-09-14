@@ -48,7 +48,7 @@ const Contact = () => {
     return (
         <div className='contact-wrapper'>
             <div className='contact-left-wrapper'>
-                <h2 className='contact-quote'> If the women don't find you handsome </h2>
+                <h2 className='contact-quote'> If the women don't find you handsome, </h2>
                 <h2 className='contact-quote'> they should at least find you handy. </h2>
                 <div className='button-wrapper'>
                     <button className='btn btn-orange'>
