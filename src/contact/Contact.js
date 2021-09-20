@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import sanitizeData from '../shared/utils/SanitizeData'
 import { send } from 'emailjs-com'
 
@@ -6,40 +6,74 @@ import { send } from 'emailjs-com'
 const Contact = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [isEmailRequired, setIsEmailRequired] = useState(true)
+    const [phone, setPhone] = useState('')
+    const [isPhoneRequired, setIsPhoneRequired] = useState(true)
     const [message, setMessage] = useState('')
     const [isSendingMessage, setIsSendingMessage] = useState(false)
     const [didSubmissionError, setDidSubmissionError] = useState(false)
     const [submissionMessage, setSubmissionMessage] = useState(null)
 
-    console.log( process.env.REACT_APP_EMAILJS_SERVICE_ID)
+    useEffect(() => () => resetState(), [])
+
     const submitContactForm = (e) => {
         e.preventDefault()
         setIsSendingMessage(true)
-        let msg = {name: name, email:email, message: message}
-        send(
-            process.env.REACT_APP_EMAILJS_SERVICE_ID,
-            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-            msg,
-            process.env.REACT_APP_EMAILJS_USER_ID,
-        )
-        .then((response) => {
-            setDidSubmissionError(false)
-            setIsSendingMessage(false)
-            resetState()
-            setSubmissionMessage('We have received your message and will reach out within 72 hours.')
-        })
-        .catch((err) => {
-            setDidSubmissionError(true)
-            setIsSendingMessage(false)
-            resetState()
-            setSubmissionMessage('Something broke while submitting your message. Pleasey try again or give us a call at (123) 456-7890.')
-        })
+        if(isDataValid){
+            let msg = {name: name, email:email, phone:phone, message: message}
+            send(
+                process.env.REACT_APP_EMAILJS_SERVICE_ID,
+                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+                msg,
+                process.env.REACT_APP_EMAILJS_USER_ID,
+            )
+            .then(() => {
+                setDidSubmissionError(false)
+                setIsSendingMessage(false)
+                resetState()
+                setSubmissionMessage('We have received your message and will reach out to you shortly.')
+            })
+            .catch(() => {
+                setDidSubmissionError(true)
+                setIsSendingMessage(false)
+                resetState()
+                setSubmissionMessage('Something broke while submitting your message. Please try again or give us a call at (385) 202-4334.')
+            })
+        }
     }
 
     const resetState = () => {
         setName('')
         setEmail('')
+        setPhone('')
         setMessage('')
+        setIsEmailRequired(true)
+        setIsPhoneRequired(true)
+    }
+
+    const isDataValid = () => {
+        if(!isEmailRequired || !isPhoneRequired) return true
+    }
+
+    const setRequiredField = (e) => {
+        const { name } = e.target
+        const value = sanitizeData(e.target.value)
+        if(name === 'email'){
+            setEmail(value)
+            if(email.length > 0){
+                setIsEmailRequired(false)
+            } else {
+                setIsEmailRequired(true)
+            }
+        } 
+        if(name === 'phone'){
+            setPhone(value)
+            if(email.length > 0){
+                setIsPhoneRequired(false)
+            } else {
+                setIsPhoneRequired(true)
+            }
+        } 
     }
 
 
@@ -50,7 +84,7 @@ const Contact = () => {
                 <h2 className='contact-quote'> they should at least find you handy. </h2>
                 <div className='button-wrapper'>
                     <button className='btn btn-orange'>
-                        <a className='contact-call' href="tel:+18017077067"> Call Now </a>
+                        <a className='contact-call' href="tel:+13852024334"> Call Now </a>
                     </button>
                 </div>
             </div>
@@ -64,9 +98,19 @@ const Contact = () => {
                     />
                     <label className='form-label'> Email </label>
                     <input 
+                        name='email'
                         type='email'
                         value={email}
-                        onChange = {e => setEmail(sanitizeData(e.target.value))}
+                        required={isEmailRequired}
+                        onChange = {e => setRequiredField(e)}
+                    />
+                    <label className='form-label'> Phone </label>
+                    <input 
+                        name='phone'
+                        type='phone'
+                        value={phone}
+                        required={isPhoneRequired}
+                        onChange = {e => setRequiredField(e)}
                     />
                     <label className='form-label'> Message </label>
                     <textarea
@@ -77,8 +121,8 @@ const Contact = () => {
                         { 
                             isSendingMessage 
                             ?
-                            <div class="loader-wrapper">
-                                <span class="loader"><span class="loader-inner"></span></span>
+                            <div className="loader-wrapper">
+                                <span className="loader"><span className="loader-inner"></span></span>
                             </div>
                             :
                             <button className='btn btn-green'>
