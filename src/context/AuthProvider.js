@@ -15,12 +15,12 @@ const  AuthContextProvider = (props) => {
         e.preventDefault()
         if(password !== confirmPassword) return setAuthMessage('Passwords do not match')
         // Mesage to notify users they can not create an account:
-        setAuthMessage('You do not have permissions to perfrom this action. Please contact the site administrator')
+        setAuthMessage('You do not have permissions to perfrom this action. Please contact the site administrator.')
         
         // Registrations are disabled when the code below is removed
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => setAuthMessage('Successfully created user.  Please login.'))
-        .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
+        // firebase.auth().createUserWithEmailAndPassword(email, password)
+        // .then(() => setAuthMessage('Successfully created user.  Please login.'))
+        // .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
     }
 
     const login = (e) => {
