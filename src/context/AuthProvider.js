@@ -18,9 +18,9 @@ const  AuthContextProvider = (props) => {
         setAuthMessage('You do not have permissions to perfrom this action. Please contact the site administrator')
         
         // Registrations are disabled when the code below is removed
-        // firebase.auth().createUserWithEmailAndPassword(email, password)
-        // .then(() => setAuthMessage('Successfully created user.  Please login.'))
-        // .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => setAuthMessage('Successfully created user.  Please login.'))
+        .catch(() => setAuthMessage('Failed to create user.  Please try again.'))
     }
 
     const login = (e) => {
