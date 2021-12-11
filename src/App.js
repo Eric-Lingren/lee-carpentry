@@ -14,7 +14,6 @@ import Footer from './footer/Footer'
 
 
 const App = () => {
-
   return (
     <FirebaseContext.Provider value={{ firebase }}>
       <Navbar />
