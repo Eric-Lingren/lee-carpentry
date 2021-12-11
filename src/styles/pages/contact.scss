@@ -72,8 +72,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
+.grecaptcha-badge {
+  bottom: 65px !important; 
+}
 
 .loader-wrapper {
   top: 0;

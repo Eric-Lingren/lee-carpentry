@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+// import { GoogleReCaptchaProvider, GoogleReCaptcha, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import sanitizeData from '../shared/utils/SanitizeData'
 import { send } from 'emailjs-com'
 
@@ -14,11 +15,27 @@ const Contact = () => {
     const [didSubmissionError, setDidSubmissionError] = useState(false)
     const [submissionMessage, setSubmissionMessage] = useState(null)
 
-    useEffect(() => () => resetState(), [])
 
-    const submitContactForm = (e) => {
-        e.preventDefault()
+    const removeCaptcha = () => {
+        const script = document.getElementById('captchaScript')
+        const recaptchaElems = document.getElementsByClassName('grecaptcha-badge')
+        if (script) script.remove()
+        if (recaptchaElems.length) recaptchaElems[0].remove()
+    }
+
+    useEffect(() => {
+        return () => resetState()
+    }, [])
+
+    useEffect(() => {
+        return () => removeCaptcha()
+    }, [])
+
+    const submitContactForm = useCallback(() => {
         setIsSendingMessage(true)
+        const isDataValid = () => {
+            if(!isEmailRequired || !isPhoneRequired) return true
+        }
         if(isDataValid){
             let msg = {name: name, email:email, phone:phone, message: message}
             send(
@@ -40,7 +57,35 @@ const Contact = () => {
                 setSubmissionMessage('Something broke while submitting your message. Please try again or give us a call at (385) 202-4334.')
             })
         }
-    }
+    }, [email, isEmailRequired, isPhoneRequired, message, name, phone])
+
+
+    const handleReCaptcha = useCallback( async() => {
+        window.grecaptcha.ready(_ => {
+            window.grecaptcha
+            .execute(process.env.REACT_APP_GOOGLE_RECAPTCHA, { action: "contact" })
+            .then(token => {
+                submitContactForm(token)
+            })
+        })
+    }, [ submitContactForm ] )
+
+
+    useEffect(() => {
+        // Add reCaptcha to page
+        const script = document.createElement("script")
+        script.id = 'captchaScript'
+        script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.REACT_APP_GOOGLE_RECAPTCHA}`
+        script.async = true
+        document.body.appendChild(script)
+    }, [])
+    
+
+    const onSubmit = useCallback(async(e) => {
+        e.preventDefault()
+        handleReCaptcha()
+    }, [ handleReCaptcha, ]);
+    
 
     const resetState = () => {
         setName('')
@@ -51,10 +96,6 @@ const Contact = () => {
         setIsPhoneRequired(true)
     }
 
-    const isDataValid = () => {
-        if(!isEmailRequired || !isPhoneRequired) return true
-    }
-
     const setRequiredField = (e) => {
         const { name } = e.target
         const value = sanitizeData(e.target.value)
@@ -62,14 +103,16 @@ const Contact = () => {
             setEmail(value)
             if(email.length > 0){
                 setIsEmailRequired(false)
+                setIsPhoneRequired(false)
             } else {
                 setIsEmailRequired(true)
             }
         } 
         if(name === 'phone'){
             setPhone(value)
-            if(email.length > 0){
+            if(phone.length > 0){
                 setIsPhoneRequired(false)
+                setIsEmailRequired(false)
             } else {
                 setIsPhoneRequired(true)
             }
@@ -78,6 +121,7 @@ const Contact = () => {
 
 
     return (
+        
         <div className='contact-wrapper'>
             <div className='contact-left-wrapper'>
                 <h2 className='contact-quote'> If the women don't find you handsome, </h2>
@@ -89,7 +133,7 @@ const Contact = () => {
                 </div>
             </div>
             <div className='contact-right-wrapper'>
-                <form className='contact-form' onSubmit={submitContactForm}>
+                <form className='contact-form' onSubmit={onSubmit}>
                     <label className='form-label'> Name </label>
                     <input 
                         type='text'

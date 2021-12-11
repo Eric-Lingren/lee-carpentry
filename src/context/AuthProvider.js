@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 
 export const AuthContext = React.createContext()
 
@@ -14,9 +14,7 @@ const  AuthContextProvider = (props) => {
     const register = (e) => {
         e.preventDefault()
         if(password !== confirmPassword) return setAuthMessage('Passwords do not match')
-        // Mesage to notify users they can not create an account:
         setAuthMessage('You do not have permissions to perfrom this action. Please contact the site administrator.')
-        
         // Registrations are disabled when the code below is removed
         // firebase.auth().createUserWithEmailAndPassword(email, password)
         // .then(() => setAuthMessage('Successfully created user.  Please login.'))

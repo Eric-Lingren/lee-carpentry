@@ -1,18 +1,18 @@
-import app from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/storage'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
+import 'firebase/compat/storage'
 
 import config from '../config/config' 
 
 class Firebase {
     constructor() {
-        app.initializeApp(config.firebaseConfig)
-        this.auth = app.auth()
-        this.db = app.firestore()
-        this.storage = app.storage()
+        firebase.initializeApp(config.firebaseConfig)
+        this.auth = firebase.auth()
+        this.db = firebase.firestore()
+        this.storage = firebase.storage()
     }
 }
-const firebase = new Firebase()
+const firebaseConstructor = new Firebase()
 
-export default firebase
+export default firebaseConstructor

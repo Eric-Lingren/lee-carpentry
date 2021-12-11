@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { ProjectContext } from '../context/ProjectProvider'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
@@ -72,10 +72,10 @@ const ProjectDetails = () => {
                         <p className='project-details-description'> {project.projectDescription} </p>
                     </div>
                     <div className='project-details-right-wrapper'>
-                        <h3 className='project-details-sub-header'> Other Info </h3>
+                        {/* <h3 className='project-details-sub-header'> Other Info </h3>
                         <p className='project-details-other-info-text'>
                             If there's anything else you want to include that I haven't put on here already it could go here
-                        </p>
+                        </p> */}
                     </div>
                     {
                         currentWindowWidth <= 768 &&
@@ -88,7 +88,7 @@ const ProjectDetails = () => {
                     }
                 </div>
             }
-            <Link to='/projects' className='project-details-link'> Return to Projects Page </Link>
+            <NavLink to='/projects' className='project-details-link'> Return to Projects Page </NavLink>
         </div>
     )
 }
