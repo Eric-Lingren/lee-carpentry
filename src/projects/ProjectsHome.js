@@ -5,7 +5,6 @@ import ProjectsFilterBar from './ProjectsFilterBar'
 import ProjectCard from './ProjectCard'
 
 
-
 const ProjectsHome = () => {
     const { getAllProjects } = useContext(ProjectContext)
     const [ allProjects, setAllProjects ] = useState([])

@@ -70,11 +70,21 @@ const  ProjectContextProvider = (props) => {
                 created: Date.now()
             }
             firebase.db.collection('projects').add(newProject)
+            resetProjectState()
             setUploadSuccess(true)
         } catch(err) {
             console.error(err)
             setUploadSuccess(false)
         }
+    }
+
+    const resetProjectState = () => {
+        setAllImagesAsFiles([])
+        setProjectTitle('')
+        setProjectDescription('')
+        setProjectLocation('')
+        setCategoryText('')
+        setAllCategories([])
     }
 
 
